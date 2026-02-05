@@ -26,7 +26,7 @@ body {
 }
 
 section {
-  padding: 70px 18px;
+  padding: 80px 18px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -57,6 +57,24 @@ p {
 }
 
 .hidden { display: none; }
+
+/* MUSIC */
+.music-bar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.music-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 0.95rem;
+}
 
 /* Letters */
 .letters {
@@ -90,14 +108,6 @@ p {
   color: white;
 }
 
-/* Fun facts */
-.fact {
-  background: rgba(255,255,255,0.12);
-  padding: 20px;
-  border-radius: 18px;
-  margin-top: 15px;
-}
-
 /* Yes No */
 .yes-no {
   margin-top: 30px;
@@ -119,123 +129,92 @@ p {
 /* Hearts */
 .heart {
   position: fixed;
-  bottom: -30px;
-  animation: floatUp 6s linear forwards;
   pointer-events: none;
+  animation: floatUp 3s ease-out forwards;
 }
 
 @keyframes floatUp {
-  0% { transform: translateY(0); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateY(-120vh); opacity: 0; }
-}
-
-@media (min-width: 768px) {
-  h1 { font-size: 3.2rem; }
-  h2 { font-size: 2.4rem; }
+  0% { transform: translateY(0) scale(0.5); opacity: 1; }
+  100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- MUSIC -->
+<div class="music-bar">
+  <button class="music-btn" onclick="toggleMusic()">▶ Play music</button>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="Baanali-Badalago.mp3" type="audio/mpeg">
+</audio>
+
 <!-- HERO -->
 <section>
-  <h1>Hiiii <span style="color:#ff4d8d">Kandaaa</span> 💜</h1>
+  <h1>Hey <span style="color:#ff4d8d">You</span> 💜</h1>
   <p>This isn’t random.<br>This is intentional.</p>
-  <button class="btn" onclick="scrollTo('letters')">Start 💫</button>
+  <button class="btn" onclick="goToSection('letters')">Start 💫</button>
 </section>
 
 <!-- LETTERS -->
 <section id="letters">
   <h2>Things I Wanted To Say 💌</h2>
-
   <div class="letters">
-    <div class="letter" onclick="toggle(this)">
-      💜 Tap me
-      <p class="hidden">You have this way of being calm but showing how much you love me in a very different way.</p>
+    <div class="letter" onclick="toggle(this)">💜 Tap me
+      <p class="hidden">You have this calm confidence I’m drawn to.</p>
     </div>
-
-    <div class="letter" onclick="toggle(this)">
-      💖 Tap me
-      <p class="hidden">We talk for hours every day. and I still crave your voice.</p>
+    <div class="letter" onclick="toggle(this)">💖 Tap me
+      <p class="hidden">I don’t get bored talking to you. Ever.</p>
     </div>
-
-    <div class="letter" onclick="toggle(this)">
-      💫 Tap me
-      <p class="hidden">Somewhere between “Hi Harshitha" to "Helu Bangara", I'm experiencing what love is with you.</p>
+    <div class="letter" onclick="toggle(this)">💫 Tap me
+      <p class="hidden">Somewhere between “hey” and now… you mattered.</p>
     </div>
   </div>
 </section>
 
-<!-- PERSONAL QUIZ -->
+<!-- QUIZ 1 -->
 <section>
-  <h2>Okay, Let’s See 😏</h2>
-
+  <h2>Let’s Test You 😏</h2>
   <div class="quiz-box">
-    <p id="quizQ">When did we first hug?</p>
-
-    <button onclick="quiz('Correct 😌 8th June 💜')">
-      8th June
-    </button>
-    <button onclick="quiz('Nope 🙃')">15th June</button>
-    <button onclick="quiz('Illaaa')">24th June</button>
+    <p id="q1">When did we first meet?</p>
+    <button onclick="correct('q1','6th February, Dandeli 💜')">6th February, Dandeli</button>
+    <button onclick="wrong('q1')">Random day</button>
+    <button onclick="wrong('q1')">I forgot</button>
   </div>
 </section>
 
+<!-- QUIZ 2 -->
 <section>
-  <h2>Important Questions 😌</h2>
-
+  <h2>Important Question 😌</h2>
   <div class="quiz-box">
-    <p id="quizQ2">What’s your favourite snack?</p>
-
-    <button onclick="quiz2('True but also… me 😏')">Churmuri</button>
-    <button onclick="quiz2('Correct answer 😌💜')">Me</button>
-    <button onclick="quiz2('May be, but no 😅')">Ice cream</button>
+    <p id="q2">Your favourite snack?</p>
+    <button onclick="correct('q2','True… but also me 😏')">Churmuri</button>
+    <button onclick="correct('q2','Correct answer 😌💜')">Me</button>
+    <button onclick="wrong('q2')">Anything sweet</button>
   </div>
 </section>
 
+<!-- QUIZ 3 -->
 <section>
-  <h2>Values Test 💭</h2>
-
+  <h2>Values 💭</h2>
   <div class="quiz-box">
-    <p id="quizQ3">What do you value the most?</p>
-
-    <button onclick="quiz3('Exactly. Yourself 💜')">Yourself</button>
-    <button onclick="quiz3('You’re smart but not this 😌')">Money</button>
-    <button onclick="quiz3('Nope 🙃')">Sleep</button>
+    <p id="q3">What do you value the most?</p>
+    <button onclick="correct('q3','Yourself 💜')">Yourself</button>
+    <button onclick="wrong('q3')">Money</button>
+    <button onclick="wrong('q3')">Sleep</button>
   </div>
 </section>
 
+<!-- QUIZ 4 -->
 <section>
   <h2>Tricky One 😁</h2>
-
   <div class="quiz-box">
-    <p id="quizQ4">What do you value more than yourself?</p>
-
-    <button onclick="quiz4('I knew it 😌💜')">Me</button>
-    <button onclick="quiz4('Lies 😏')">Nothing</button>
+    <p id="q4">What do you value more than yourself?</p>
+    <button onclick="correct('q4','I knew it 😌💜')">Me</button>
+    <button onclick="wrong('q4')">Nothing</button>
   </div>
-</section>
-
-<!-- FUN FACTS -->
-<section>
-  <h2>Things I Know About You 💭</h2>
-
-  <div class="fact">You pretend you don’t care… but you do.</div>
-  <div class="fact">You value self-respect — and that’s hot.</div>
-  <div class="fact">You laugh at the dumbest things (especially me).</div>
-  <div class="fact">You didn’t expect this… but you like it 😌</div>
-</section>
-
-<!-- BUILD UP -->
-<section>
-  <h2>So Here’s The Thing 💜</h2>
-  <p>
-    I don’t believe in coincidences.<br>
-    I believe in effort.<br><br>
-    And this… is effort.
-  </p>
 </section>
 
 <!-- VALENTINE -->
@@ -249,32 +228,46 @@ p {
   </div>
 
   <div id="finalMessage" class="hidden">
-    Not just this year, every year hereon, deal? 💜
+    I was hoping you’d say that 💜
   </div>
 </section>
 
 <script>
-function scrollTo(id) {
+/* Navigation */
+function goToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
+/* Toggle letters */
 function toggle(card) {
   card.querySelector('p').classList.toggle('hidden');
 }
 
-function quiz(text) {
-  document.getElementById('quizQ').innerText = text;
-}
-function quiz2(text) {
-  document.getElementById('quizQ2').innerText = text;
-}
-function quiz3(text) {
-  document.getElementById('quizQ3').innerText = text;
-}
-function quiz4(text) {
-  document.getElementById('quizQ4').innerText = text;
+/* Music */
+let playing = false;
+const music = document.getElementById('bgMusic');
+function toggleMusic() {
+  if (!playing) {
+    music.play();
+    event.target.innerText = '⏸ Pause music';
+  } else {
+    music.pause();
+    event.target.innerText = '▶ Play music';
+  }
+  playing = !playing;
 }
 
+/* Quiz logic */
+function correct(id, text) {
+  document.getElementById(id).innerText = text;
+  heartBurst();
+}
+
+function wrong(id) {
+  document.getElementById(id).innerText = 'Nope 😅';
+}
+
+/* No button escape */
 const noBtn = document.getElementById('noBtn');
 noBtn.addEventListener('touchstart', moveNo);
 noBtn.addEventListener('mouseover', moveNo);
@@ -285,20 +278,25 @@ function moveNo() {
   noBtn.style.top = Math.random() * 70 + '%';
 }
 
+/* Yes */
 function yes() {
   document.getElementById('finalMessage').classList.remove('hidden');
+  heartBurst(25);
 }
 
-// hearts
-setInterval(() => {
-  const h = document.createElement('div');
-  h.className = 'heart';
-  h.innerText = '💜';
-  h.style.left = Math.random() * 100 + 'vw';
-  h.style.fontSize = Math.random() * 20 + 14 + 'px';
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 6000);
-}, 350);
+/* Heart burst */
+function heartBurst(count = 15) {
+  for (let i = 0; i < count; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.innerText = '💜';
+    h.style.left = (50 + (Math.random() * 40 - 20)) + 'vw';
+    h.style.bottom = '40vh';
+    h.style.fontSize = Math.random() * 18 + 14 + 'px';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 3000);
+  }
+}
 </script>
 
 </body>
