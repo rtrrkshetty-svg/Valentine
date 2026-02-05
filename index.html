@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💜</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --purple-dark: #240036;
+  --purple: #7b2cbf;
+  --pink: #ff4d8d;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--purple-dark), #4b006e);
+  color: white;
+  overflow-x: hidden;
+}
+
+section {
+  padding: 70px 18px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.9rem; }
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.btn {
+  margin: 22px auto 0;
+  padding: 16px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: var(--pink);
+  color: white;
+  width: 100%;
+  max-width: 320px;
+}
+
+.hidden { display: none; }
+
+/* Letters */
+.letters {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.letter {
+  background: rgba(255,255,255,0.12);
+  padding: 22px;
+  border-radius: 20px;
+}
+
+/* Quiz */
+.quiz-box {
+  background: rgba(255,255,255,0.12);
+  padding: 24px;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.quiz-box button {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1rem;
+  background: var(--purple);
+  color: white;
+}
+
+/* Fun facts */
+.fact {
+  background: rgba(255,255,255,0.12);
+  padding: 20px;
+  border-radius: 18px;
+  margin-top: 15px;
+}
+
+/* Yes No */
+.yes-no {
+  margin-top: 30px;
+  position: relative;
+}
+
+#noBtn {
+  background: transparent;
+  border: 2px solid white;
+}
+
+/* Final */
+#finalMessage {
+  margin-top: 30px;
+  font-size: 1.8rem;
+  color: var(--pink);
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: floatUp 6s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+@media (min-width: 768px) {
+  h1 { font-size: 3.2rem; }
+  h2 { font-size: 2.4rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section>
+  <h1>Hiiii <span style="color:#ff4d8d">Kandaaa</span> 💜</h1>
+  <p>This isn’t random.<br>This is intentional.</p>
+  <button class="btn" onclick="scrollTo('letters')">Start 💫</button>
+</section>
+
+<!-- LETTERS -->
+<section id="letters">
+  <h2>Things I Wanted To Say 💌</h2>
+
+  <div class="letters">
+    <div class="letter" onclick="toggle(this)">
+      💜 Tap me
+      <p class="hidden">You have this way of being calm but showing how much you love me in a very different way.</p>
+    </div>
+
+    <div class="letter" onclick="toggle(this)">
+      💖 Tap me
+      <p class="hidden">We talk for hours every day. and I still crave your voice.</p>
+    </div>
+
+    <div class="letter" onclick="toggle(this)">
+      💫 Tap me
+      <p class="hidden">Somewhere between “Hi Harshitha" to "Helu Bangara", I'm experiencing what love is with you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL QUIZ -->
+<section>
+  <h2>Okay, Let’s See 😏</h2>
+
+  <div class="quiz-box">
+    <p id="quizQ">When did we first hug?</p>
+
+    <button onclick="quiz('Correct 😌 8th June 💜')">
+      8th June
+    </button>
+    <button onclick="quiz('Nope 🙃')">15th June</button>
+    <button onclick="quiz('Illaaa')">24th June</button>
+  </div>
+</section>
+
+<section>
+  <h2>Important Questions 😌</h2>
+
+  <div class="quiz-box">
+    <p id="quizQ2">What’s your favourite snack?</p>
+
+    <button onclick="quiz2('True but also… me 😏')">Churmuri</button>
+    <button onclick="quiz2('Correct answer 😌💜')">Me</button>
+    <button onclick="quiz2('May be, but no 😅')">Ice cream</button>
+  </div>
+</section>
+
+<section>
+  <h2>Values Test 💭</h2>
+
+  <div class="quiz-box">
+    <p id="quizQ3">What do you value the most?</p>
+
+    <button onclick="quiz3('Exactly. Yourself 💜')">Yourself</button>
+    <button onclick="quiz3('You’re smart but not this 😌')">Money</button>
+    <button onclick="quiz3('Nope 🙃')">Sleep</button>
+  </div>
+</section>
+
+<section>
+  <h2>Tricky One 😁</h2>
+
+  <div class="quiz-box">
+    <p id="quizQ4">What do you value more than yourself?</p>
+
+    <button onclick="quiz4('I knew it 😌💜')">Me</button>
+    <button onclick="quiz4('Lies 😏')">Nothing</button>
+  </div>
+</section>
+
+<!-- FUN FACTS -->
+<section>
+  <h2>Things I Know About You 💭</h2>
+
+  <div class="fact">You pretend you don’t care… but you do.</div>
+  <div class="fact">You value self-respect — and that’s hot.</div>
+  <div class="fact">You laugh at the dumbest things (especially me).</div>
+  <div class="fact">You didn’t expect this… but you like it 😌</div>
+</section>
+
+<!-- BUILD UP -->
+<section>
+  <h2>So Here’s The Thing 💜</h2>
+  <p>
+    I don’t believe in coincidences.<br>
+    I believe in effort.<br><br>
+    And this… is effort.
+  </p>
+</section>
+
+<!-- VALENTINE -->
+<section>
+  <h2>Be Honest 😳</h2>
+  <p>Will you be my Valentine?</p>
+
+  <div class="yes-no">
+    <button class="btn" onclick="yes()">YES 💖</button>
+    <button class="btn" id="noBtn">NO 🙃</button>
+  </div>
+
+  <div id="finalMessage" class="hidden">
+    Not just this year, every year hereon, deal? 💜
+  </div>
+</section>
+
+<script>
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggle(card) {
+  card.querySelector('p').classList.toggle('hidden');
+}
+
+function quiz(text) {
+  document.getElementById('quizQ').innerText = text;
+}
+function quiz2(text) {
+  document.getElementById('quizQ2').innerText = text;
+}
+function quiz3(text) {
+  document.getElementById('quizQ3').innerText = text;
+}
+function quiz4(text) {
+  document.getElementById('quizQ4').innerText = text;
+}
+
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('touchstart', moveNo);
+noBtn.addEventListener('mouseover', moveNo);
+
+function moveNo() {
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = Math.random() * 70 + '%';
+  noBtn.style.top = Math.random() * 70 + '%';
+}
+
+function yes() {
+  document.getElementById('finalMessage').classList.remove('hidden');
+}
+
+// hearts
+setInterval(() => {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerText = '💜';
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.fontSize = Math.random() * 20 + 14 + 'px';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 350);
+</script>
+
+</body>
+</html>
